@@ -2,9 +2,11 @@ package com.daniele.api_ai;
 
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.web.bind.annotation.GetMapping;
-
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import javax.validation.constraints.NotNull;
 
+@RestController
 public class ChatController {
 
     private final ChatClient chatClient;
@@ -14,7 +16,7 @@ public class ChatController {
     }
 
     @GetMapping("/ai")
-    String generation(String userInput) {
+    String generation(@RequestParam String userInput) {
         return this.chatClient.prompt()
                 .user(userInput)
                 .call()
