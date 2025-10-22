@@ -1,1 +1,11 @@
 GET localhost:8080/ai?userInput=qual foi o ano do atentado em 11 de setembro às torres Gêmeas nos estados unidos da américa?
+    '
+
+####
+
+POST localhost:8080/api/chat
+Content-Type: application/json
+
+{
+  "message": "Conte me uma piada sobre Java"
+}

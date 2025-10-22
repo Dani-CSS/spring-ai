@@ -1,12 +1,12 @@
-package com.daniele.api_ai;
+package com.daniele.api_ai.chat;
 
 import org.springframework.ai.chat.client.ChatClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import javax.validation.constraints.NotNull;
 
 @RestController
+@RequestMapping("/api/chat")
 public class ChatController {
 
     private final ChatClient chatClient;
@@ -15,10 +15,10 @@ public class ChatController {
         this.chatClient = chatClientBuilder.build();
     }
 
-    @GetMapping("/ai")
-    String generation(@RequestParam String userInput) {
+    @PostMapping
+    String generation(@RequestBody ChatMessage message) {
         return this.chatClient.prompt()
-                .user(userInput)
+                .user(message.message())
                 .call()
                 .content();
     }
